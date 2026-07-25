@@ -52,9 +52,14 @@ export default function Skills() {
                 {group.items.map((skill) => (
                   <span
                     key={skill}
-                    className="border-gray-subtle bg-near-black text-gray-light hover:border-electric-blue/40 hover:text-electric-blue inline-block rounded-full border px-3 py-1.5 font-mono text-xs transition-all hover:shadow-[0_0_12px_-4px_#00d4ff]"
+                    className="border-gray-subtle bg-near-black text-gray-light hover:border-electric-blue/40 hover:text-electric-blue flex flex-row rounded-full border px-3 py-1.5 font-mono text-xs transition-all hover:shadow-[0_0_12px_-4px_#00d4ff]"
                   >
-                    {skill}
+                    <img
+                      height="16"
+                      width="16"
+                      src={`https://cdn.simpleicons.org/${group.simpleIcons[group.items.indexOf(skill)]}/gray`}
+                    />
+                    <p className="ml-2">{skill}</p>
                   </span>
                 ))}
               </div>

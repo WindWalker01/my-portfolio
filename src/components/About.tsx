@@ -18,7 +18,7 @@ const stats = [
     label: "Experience",
     value: `${personal.yearsOfExperience}+ years`,
   },
-  { icon: Code2, label: "Focus", value: "Full-Stack & 3D Web" },
+  { icon: Code2, label: "Focus", value: "Full-Stack Developer" },
 ];
 
 export default function About() {
@@ -48,6 +48,7 @@ export default function About() {
                   <div className="bg-electric-blue/10 text-electric-blue mx-auto flex h-24 w-24 items-center justify-center rounded-full text-4xl font-bold">
                     {personal.name.charAt(0)}
                   </div>
+                  <img src="src/assets/profile.jpg" alt="Profile" />
                   <p className="text-gray-muted mt-3 text-sm">
                     Your photo here
                   </p>

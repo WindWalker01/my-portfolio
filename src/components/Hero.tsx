@@ -45,8 +45,14 @@ export default function Hero() {
         </Suspense>
       </div>
 
-      {/* Gradient glow overlay — darker at edges to frame text */}
-      <div className="from-near-black/40 via-near-black/10 to-near-black pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b" />
+      {/* Gradient glow overlay — darker at edges and center to frame text */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(10,10,10,0.30) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.80) 100%)",
+        }}
+      />
 
       {/* Content overlay */}
       <motion.div
@@ -55,75 +61,78 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
-        <motion.p
-          variants={itemVariants}
-          className="text-electric-blue font-mono text-sm tracking-widest uppercase"
-        >
-          Hello, I'm
-        </motion.p>
-
-        <motion.h1
-          variants={itemVariants}
-          className="mt-2 text-5xl leading-tight font-bold tracking-tight md:text-7xl"
-        >
-          {personal.name}
-        </motion.h1>
-
-        <motion.p
-          variants={itemVariants}
-          className="text-electric-blue mt-2 text-xl font-medium md:text-2xl"
-        >
-          {personal.title}
-        </motion.p>
-
-        <motion.p
-          variants={itemVariants}
-          className="text-gray-light mx-auto mt-4 max-w-xl text-base leading-relaxed md:text-lg"
-        >
-          {personal.tagline}
-        </motion.p>
-
-        <motion.div
-          variants={itemVariants}
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
-        >
-          <a
-            href="#projects"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("projects")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="group bg-electric-blue text-near-black hover:bg-electric-blue/90 inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-all hover:shadow-[0_0_30px_-4px_#00d4ff] active:scale-95"
+        {/* Dark backdrop card for readability */}
+        <div className="bg-near-black/40 -m-4 rounded-2xl p-4 backdrop-blur-sm sm:-m-6 sm:p-6 md:-m-8 md:p-8">
+          <motion.p
+            variants={itemVariants}
+            className="text-electric-blue font-mono text-sm tracking-widest uppercase"
           >
-            View Work
-            <ExternalLink
-              size={16}
-              className="transition-transform group-hover:translate-x-0.5"
-            />
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="group border-electric-blue/40 text-electric-blue hover:bg-electric-blue/10 inline-flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff] active:scale-95"
+            Hello, I'm
+          </motion.p>
+
+          <motion.h1
+            variants={itemVariants}
+            className="mt-2 text-5xl leading-tight font-bold tracking-tight md:text-7xl"
           >
-            Contact
-          </a>
-          <a
-            href={personal.resumePath}
-            download
-            className="group border-gray-subtle text-gray-light hover:border-electric-blue/40 hover:text-electric-blue inline-flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff] active:scale-95"
+            {personal.name}
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-electric-blue mt-2 text-xl font-medium md:text-2xl"
           >
-            <Download size={16} />
-            Resume
-          </a>
-        </motion.div>
+            {personal.title}
+          </motion.p>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-gray-light mx-auto mt-4 max-w-xl text-base leading-relaxed md:text-lg"
+          >
+            {personal.tagline}
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          >
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="group bg-electric-blue text-near-black hover:bg-electric-blue/90 inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-all hover:shadow-[0_0_30px_-4px_#00d4ff] active:scale-95"
+            >
+              View Work
+              <ExternalLink
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="group border-electric-blue/40 text-electric-blue hover:bg-electric-blue/10 inline-flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff] active:scale-95"
+            >
+              Contact
+            </a>
+            <a
+              href={personal.resumePath}
+              download
+              className="group border-gray-subtle text-gray-light hover:border-electric-blue/40 hover:text-electric-blue inline-flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff] active:scale-95"
+            >
+              <Download size={16} />
+              Resume
+            </a>
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll cue */}

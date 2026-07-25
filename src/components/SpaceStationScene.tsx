@@ -5,6 +5,7 @@ import {
   AsciiRenderer,
   Float,
   OrbitControls,
+  Environment,
 } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -34,7 +35,7 @@ function SpaceStationModel() {
   if (!cleaned) return null;
 
   return (
-    <group ref={groupRef} scale={0.5}>
+    <group ref={groupRef} scale={1.5}>
       <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
         <primitive object={cleaned} />
       </Float>
@@ -139,6 +140,7 @@ function Scene3D() {
         color="#00d4ff"
       />
       <pointLight position={[0, 3, 2]} intensity={0.8} color="#00d4ff" />
+      {/* <Environment background={false} preset="city" /> */}
 
       <Suspense fallback={<PrimitiveStation />}>
         <SpaceStationModel />
@@ -156,7 +158,7 @@ function Scene3D() {
       <AsciiRenderer
         fgColor="#0088aa"
         bgColor="#0a0a0a"
-        characters="@%#*+=-:. "
+        characters=".:-=+*#%@"
         resolution={0.15}
       />
     </>
