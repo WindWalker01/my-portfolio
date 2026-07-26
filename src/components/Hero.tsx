@@ -1,7 +1,10 @@
 import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, ExternalLink } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { personal } from "../data/portfolio";
+import { FaLinkedin, FaGithub, FaFacebook } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { FiMapPin } from "react-icons/fi";
 
 const SpaceStationScene = lazy(() => import("./SpaceStationScene"));
 
@@ -86,43 +89,72 @@ export default function Hero() {
 
           <motion.p
             variants={itemVariants}
+            className="text-gray-light mx-auto mt-2 max-w-xl text-sm leading-relaxed md:text-sm"
+          >
+            {/* <stat.icon size={20} className="text-electric-blue shrink-0" /> */}
+            <FiMapPin size={16} className="text-electric-blue mr-1 inline" />
+            {personal.location}
+          </motion.p>
+
+          <motion.p
+            variants={itemVariants}
             className="text-gray-light mx-auto mt-4 max-w-xl text-base leading-relaxed md:text-lg"
           >
             {personal.tagline}
           </motion.p>
-
           <motion.div
             variants={itemVariants}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
+            className="mt-8 flex flex-wrap items-center justify-center gap-8"
           >
+            {/* Github */}
             <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("projects")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group bg-electric-blue text-near-black hover:bg-electric-blue/90 inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium transition-all hover:shadow-[0_0_30px_-4px_#00d4ff] active:scale-95"
+              href={`${personal.social.github}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              View Work
-              <ExternalLink
-                size={16}
-                className="transition-transform group-hover:translate-x-0.5"
+              <FaGithub
+                size={32}
+                className="text-gray-light hover:text-electric-blue"
               />
             </a>
+
+            {/* Linkedin */}
             <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group border-electric-blue/40 text-electric-blue hover:bg-electric-blue/10 inline-flex items-center gap-2 rounded-full border px-6 py-3 font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff] active:scale-95"
+              href={`${personal.social.linkedin}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Contact
+              <FaLinkedin
+                size={32}
+                className="text-gray-light hover:text-electric-blue"
+              />
             </a>
+
+            {/* Facebook */}
+            <a
+              href={`${personal.social.facebook}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook
+                size={32}
+                className="text-gray-light hover:text-electric-blue"
+              />
+            </a>
+
+            {/* Email */}
+            <a
+              href={`mailto:${personal.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MdEmail
+                size={32}
+                className="text-gray-light hover:text-electric-blue"
+              />
+            </a>
+
+            {/* Resume */}
             <a
               href={personal.resumePath}
               download

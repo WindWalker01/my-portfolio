@@ -1,5 +1,3 @@
-// ── Placeholder data ── swap these with your real info
-
 export const personal = {
   name: "Ruzzel Mendoza",
   title: "Full-Stack Developer",
@@ -8,11 +6,11 @@ export const personal = {
   email: "ruzzelmendozedev@gmail.com",
   location: "Balanga City, Bataan, Philippines",
   yearsOfExperience: 1,
-  resumePath: "/resume.pdf",
+  resumePath: "ruzzel_mendoza_resume.pdf",
   social: {
     github: "https://github.com/WindWalker01",
     linkedin: "https://linkedin.com/in/ruzzel-mendoza",
-    twitter: "https://www.facebook.com/ruzzel.policarpio.mendoza/",
+    facebook: "https://www.facebook.com/ruzzel.policarpio.mendoza/",
   },
   bio: [
     "I am a full-stack software developer and Computer Science student specializing in Software Development, with an expected graduation in 2027. I build scalable, secure applications using modern frameworks like Next.js, React, Laravel, and FastAPI.",
@@ -100,7 +98,7 @@ export const projects: Project[] = [
   {
     title: "ArtForgeLab",
     description:
-      "Browser-based voxel editor with WebGL rendering, undo/redo, and export-to-GLB capabilities.",
+      "A full-stack Next.js and Supabase application that lets digital artists register and protect their work using blockchain-based proof-of-ownership, AI-powered plagiarism detection, and automated certificate generation. Built as a thesis project, it includes a complete DMCA-style reporting system and admin dashboard, demonstrating end-to-end product thinking from smart contracts to user-facing security features.",
     tags: ["Three.js", "R3F", "TypeScript", "Zustand"],
     image: "artforgelab-banner.png",
     liveUrl: "artforgelab.vercel.app",
@@ -109,7 +107,7 @@ export const projects: Project[] = [
   {
     title: "BPSU Bulletin",
     description:
-      "Real-time analytics dashboard for cloud infrastructure with interactive data visualizations and collaborative features.",
+      "A content and announcement platform built for Bataan Peninsula State University, developed with PHP, MySQL, and Tailwind CSS as part of a student team project. It gives the university community a modern way to publish and engage with posts—complete with rich-text editing, Google login, comments, and admin moderation tools.",
     tags: ["React", "D3.js", "WebSocket", "Tailwind"],
     image: "bpsu-bulletin-banner.png",
     liveUrl: "",
@@ -118,7 +116,7 @@ export const projects: Project[] = [
   {
     title: "Plantanim",
     description:
-      "Aesthetic terminal emulator with retro-wave theming, GPU-accelerated rendering, and plugin system.",
+      "A React Native mobile app built as freelance work, designed to help small-scale farmers in Abucay, Bataan make better planting decisions through localized weather forecasts and farming recommendations. The app was developed to support the client's academic research, with a focus on making it genuinely usable for farmers with limited digital literacy.",
     tags: ["Rust", "WebGPU", "TUI", "WASM"],
     image: "plantanim-banner.png",
     liveUrl: "",

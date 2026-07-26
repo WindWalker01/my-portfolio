@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { skills } from "../data/portfolio";
+import { FaJava } from "react-icons/fa";
 
 const container = {
   hidden: { opacity: 0 },
@@ -54,11 +55,15 @@ export default function Skills() {
                     key={skill}
                     className="border-gray-subtle bg-near-black text-gray-light hover:border-electric-blue/40 hover:text-electric-blue flex flex-row rounded-full border px-3 py-1.5 font-mono text-sm transition-all hover:shadow-[0_0_12px_-4px_#00d4ff]"
                   >
-                    <img
-                      height="16"
-                      width="16"
-                      src={`https://cdn.simpleicons.org/${group.simpleIcons[group.items.indexOf(skill)]}/gray`}
-                    />
+                    {skill !== "Java" ? (
+                      <img
+                        height="16"
+                        width="16"
+                        src={`https://cdn.simpleicons.org/${group.simpleIcons[group.items.indexOf(skill)]}/gray`}
+                      />
+                    ) : (
+                      <FaJava className="text-gray-light" size={16} />
+                    )}
                     <p className="ml-2">{skill}</p>
                   </span>
                 ))}

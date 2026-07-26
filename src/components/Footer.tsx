@@ -4,7 +4,7 @@ import { personal } from "../data/portfolio";
 const socialLinks = [
   { icon: GitBranch, href: personal.social.github, label: "GitHub" },
   { icon: Link, href: personal.social.linkedin, label: "LinkedIn" },
-  { icon: MessageCircle, href: personal.social.twitter, label: "Twitter" },
+  { icon: MessageCircle, href: personal.social.facebook, label: "Facebook" },
 ];
 
 export default function Footer() {
