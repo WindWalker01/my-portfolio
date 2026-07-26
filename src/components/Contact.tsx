@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle2, Mail, MapPin } from "lucide-react";
+import {
+  Send,
+  CheckCircle2,
+  Mail,
+  MapPin,
+  Loader2,
+  AlertCircle,
+} from "lucide-react";
 import { personal } from "../data/portfolio";
 
 interface FormState {
@@ -23,6 +30,8 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
 
   function validate(): FormErrors {
@@ -35,8 +44,10 @@ export default function Contact() {
     return errs;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitError(null);
+
     const errs = validate();
     setErrors(errs);
 
@@ -46,11 +57,40 @@ export default function Contact() {
       return;
     }
 
-    // Placeholder submit — logs to console
-    console.log("Form submitted:", form);
-    setSubmitted(true);
-    setForm({ name: "", email: "", message: "" });
-    setTimeout(() => setSubmitted(false), 4000);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setSubmitError(
+          data.message || "Something went wrong. Please try again.",
+        );
+      }
+    } catch {
+      setSubmitError(
+        "Unable to send message. Please check your connection and try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function handleChange(field: keyof FormState, value: string) {
@@ -93,14 +133,14 @@ export default function Contact() {
                 <div className="bg-electric-blue/10 group-hover:bg-electric-blue/20 flex h-10 w-10 items-center justify-center rounded-lg transition-all">
                   <Mail size={18} className="text-electric-blue" />
                 </div>
-                <span className="text-sm">{personal.email}</span>
+                <span className="text-base">{personal.email}</span>
               </a>
 
               <div className="text-gray-light flex items-center gap-3">
                 <div className="bg-electric-blue/10 flex h-10 w-10 items-center justify-center rounded-lg">
                   <MapPin size={18} className="text-electric-blue" />
                 </div>
-                <span className="text-sm">{personal.location}</span>
+                <span className="text-base">{personal.location}</span>
               </div>
             </div>
           </motion.div>
@@ -126,14 +166,15 @@ export default function Contact() {
                   placeholder="Your name"
                   value={form.name}
                   onChange={(e) => handleChange("name", e.target.value)}
-                  className={`bg-dark-card text-off-white placeholder-gray-muted focus:border-electric-blue/50 focus:ring-electric-blue/30 w-full rounded-lg border px-4 py-3 text-sm transition-all outline-none focus:ring-1 ${
+                  className={`bg-dark-card text-off-white placeholder-gray-muted focus:border-electric-blue/50 focus:ring-electric-blue/30 w-full rounded-lg border px-4 py-3 text-base transition-all outline-none focus:ring-1 ${
                     errors.name ? "border-red-500" : "border-gray-subtle"
                   }`}
                   aria-invalid={!!errors.name}
                   aria-describedby={errors.name ? "name-error" : undefined}
+                  disabled={isSubmitting}
                 />
                 {errors.name && (
-                  <p id="name-error" className="mt-1 text-xs text-red-400">
+                  <p id="name-error" className="mt-1 text-sm text-red-400">
                     {errors.name}
                   </p>
                 )}
@@ -149,14 +190,15 @@ export default function Contact() {
                   placeholder="your@email.com"
                   value={form.email}
                   onChange={(e) => handleChange("email", e.target.value)}
-                  className={`bg-dark-card text-off-white placeholder-gray-muted focus:border-electric-blue/50 focus:ring-electric-blue/30 w-full rounded-lg border px-4 py-3 text-sm transition-all outline-none focus:ring-1 ${
+                  className={`bg-dark-card text-off-white placeholder-gray-muted focus:border-electric-blue/50 focus:ring-electric-blue/30 w-full rounded-lg border px-4 py-3 text-base transition-all outline-none focus:ring-1 ${
                     errors.email ? "border-red-500" : "border-gray-subtle"
                   }`}
                   aria-invalid={!!errors.email}
                   aria-describedby={errors.email ? "email-error" : undefined}
+                  disabled={isSubmitting}
                 />
                 {errors.email && (
-                  <p id="email-error" className="mt-1 text-xs text-red-400">
+                  <p id="email-error" className="mt-1 text-sm text-red-400">
                     {errors.email}
                   </p>
                 )}
@@ -172,16 +214,17 @@ export default function Contact() {
                   placeholder="Your message..."
                   value={form.message}
                   onChange={(e) => handleChange("message", e.target.value)}
-                  className={`bg-dark-card text-off-white placeholder-gray-muted focus:border-electric-blue/50 focus:ring-electric-blue/30 w-full resize-none rounded-lg border px-4 py-3 text-sm transition-all outline-none focus:ring-1 ${
+                  className={`bg-dark-card text-off-white placeholder-gray-muted focus:border-electric-blue/50 focus:ring-electric-blue/30 w-full resize-none rounded-lg border px-4 py-3 text-base transition-all outline-none focus:ring-1 ${
                     errors.message ? "border-red-500" : "border-gray-subtle"
                   }`}
                   aria-invalid={!!errors.message}
                   aria-describedby={
                     errors.message ? "message-error" : undefined
                   }
+                  disabled={isSubmitting}
                 />
                 {errors.message && (
-                  <p id="message-error" className="mt-1 text-xs text-red-400">
+                  <p id="message-error" className="mt-1 text-sm text-red-400">
                     {errors.message}
                   </p>
                 )}
@@ -189,13 +232,23 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="group bg-electric-blue text-near-black hover:bg-electric-blue/90 inline-flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium transition-all hover:shadow-[0_0_25px_-6px_#00d4ff] active:scale-[0.98]"
+                disabled={isSubmitting}
+                className="group bg-electric-blue text-near-black hover:bg-electric-blue/90 inline-flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium transition-all hover:shadow-[0_0_25px_-6px_#00d4ff] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                <Send
-                  size={16}
-                  className="transition-transform group-hover:translate-x-0.5"
-                />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send
+                      size={16}
+                      className="transition-transform group-hover:translate-x-0.5"
+                    />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
 
@@ -206,10 +259,25 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-400"
+                  className="mt-4 flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-base text-emerald-400"
                 >
                   <CheckCircle2 size={16} />
-                  Message sent! (Logged to console — add your backend)
+                  Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Error toast */}
+            <AnimatePresence>
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mt-4 flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-base text-red-400"
+                >
+                  <AlertCircle size={16} />
+                  {submitError}
                 </motion.div>
               )}
             </AnimatePresence>

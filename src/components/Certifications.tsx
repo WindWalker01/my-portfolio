@@ -93,7 +93,7 @@ export default function Certifications() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          className="text-gray-muted mt-3 max-w-2xl text-sm"
+          className="text-gray-muted mt-3 max-w-2xl text-base"
         >
           Drag and explore each certificate card. Click to view the full PDF.
         </motion.p>
@@ -135,13 +135,13 @@ export default function Certifications() {
                       <Award size={16} className="text-electric-blue" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="text-off-white text-sm leading-snug font-semibold drop-shadow-lg">
+                      <h3 className="text-off-white text-base leading-snug font-semibold drop-shadow-lg">
                         {cert.title}
                       </h3>
-                      <p className="mt-0.5 text-xs text-gray-300 drop-shadow-lg">
+                      <p className="mt-0.5 text-sm text-gray-300 drop-shadow-lg">
                         {cert.issuer}
                       </p>
-                      <span className="mt-1 block font-mono text-[10px] text-gray-400 drop-shadow-lg">
+                      <span className="mt-1 block font-mono text-xs text-gray-400 drop-shadow-lg">
                         {cert.date}
                       </span>
                     </div>

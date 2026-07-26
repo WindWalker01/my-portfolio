@@ -65,7 +65,7 @@ export default function Hero() {
         <div className="bg-near-black/40 -m-4 rounded-2xl p-4 backdrop-blur-sm sm:-m-6 sm:p-6 md:-m-8 md:p-8">
           <motion.p
             variants={itemVariants}
-            className="text-electric-blue font-mono text-sm tracking-widest uppercase"
+            className="text-electric-blue font-mono text-base tracking-widest uppercase"
           >
             Hello, I'm
           </motion.p>

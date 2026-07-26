@@ -49,7 +49,7 @@ export default function About() {
                     {personal.name.charAt(0)}
                   </div>
                   <img src="src/assets/profile.jpg" alt="Profile" />
-                  <p className="text-gray-muted mt-3 text-sm">
+                  <p className="text-gray-muted mt-3 text-base">
                     Your photo here
                   </p>
                 </div>
@@ -99,8 +99,8 @@ export default function About() {
                     className="text-electric-blue shrink-0"
                   />
                   <div>
-                    <p className="text-gray-muted text-xs">{stat.label}</p>
-                    <p className="text-off-white text-sm font-medium">
+                    <p className="text-gray-muted text-sm">{stat.label}</p>
+                    <p className="text-off-white text-base font-medium">
                       {stat.value}
                     </p>
                   </div>

@@ -28,13 +28,13 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="text-gray-muted text-center text-xs">
+        <p className="text-gray-muted text-center text-sm">
           &copy; {new Date().getFullYear()} {personal.name}. All rights
           reserved.
         </p>
 
         {/* Built with */}
-        <p className="text-gray-muted inline-flex items-center gap-1 text-xs">
+        <p className="text-gray-muted inline-flex items-center gap-1 text-sm">
           Built with
           <Heart size={12} className="text-electric-blue" />
           using React + Tailwind + R3F

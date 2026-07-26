@@ -47,9 +47,11 @@ export default function Projects() {
             >
               {/* Thumbnail placeholder */}
               <div className="from-gray-subtle/50 to-dark-card flex h-48 items-center justify-center bg-gradient-to-br">
-                <span className="text-gray-muted/30 font-mono text-4xl font-bold">
-                  {project.title.charAt(0)}
-                </span>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full object-cover"
+                />
               </div>
 
               {/* Content */}
@@ -57,7 +59,7 @@ export default function Projects() {
                 <h3 className="text-off-white group-hover:text-electric-blue text-lg font-semibold transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray-light mt-2 text-sm leading-relaxed">
+                <p className="text-gray-light mt-2 text-base leading-relaxed">
                   {project.description}
                 </p>
 
@@ -66,7 +68,7 @@ export default function Projects() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="border-gray-subtle bg-near-black text-gray-muted hover:border-electric-blue/30 hover:text-electric-blue rounded-full border px-2.5 py-0.5 font-mono text-[10px] transition-all"
+                      className="border-gray-subtle bg-near-black text-gray-muted hover:border-electric-blue/30 hover:text-electric-blue rounded-full border px-3 py-1 font-mono text-sm transition-all"
                     >
                       {tag}
                     </span>
@@ -75,21 +77,23 @@ export default function Projects() {
 
                 {/* Links */}
                 <div className="mt-4 flex items-center gap-4">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-light hover:text-electric-blue inline-flex items-center gap-1.5 text-xs font-medium transition-all"
-                    aria-label={`View live demo of ${project.title}`}
-                  >
-                    <ExternalLink size={14} />
-                    Live Demo
-                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-light hover:text-electric-blue inline-flex items-center gap-1.5 text-sm font-medium transition-all"
+                      aria-label={`View live demo of ${project.title}`}
+                    >
+                      <ExternalLink size={14} />
+                      Live Demo
+                    </a>
+                  )}
                   <a
                     href={project.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-light hover:text-electric-blue inline-flex items-center gap-1.5 text-xs font-medium transition-all"
+                    className="text-gray-light hover:text-electric-blue inline-flex items-center gap-1.5 text-sm font-medium transition-all"
                     aria-label={`View source code of ${project.title}`}
                   >
                     <GitBranch size={14} />

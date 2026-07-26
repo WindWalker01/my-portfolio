@@ -62,7 +62,7 @@ export default function Navbar() {
               <a
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`relative text-sm font-medium tracking-wide transition-colors ${
+                className={`relative text-base font-medium tracking-wide transition-colors ${
                   active === item.href.replace("#", "")
                     ? "text-electric-blue"
                     : "text-gray-light hover:text-off-white"
@@ -83,7 +83,7 @@ export default function Navbar() {
             <a
               href={personal.resumePath}
               download
-              className="border-electric-blue/40 bg-electric-blue/10 text-electric-blue hover:bg-electric-blue/20 rounded-full border px-4 py-2 text-sm font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff]"
+              className="border-electric-blue/40 bg-electric-blue/10 text-electric-blue hover:bg-electric-blue/20 rounded-full border px-4 py-2 text-base font-medium transition-all hover:shadow-[0_0_20px_-4px_#00d4ff]"
             >
               Resume
             </a>

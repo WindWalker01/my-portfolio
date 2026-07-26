@@ -98,40 +98,31 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Nebula Dashboard",
-    description:
-      "Real-time analytics dashboard for cloud infrastructure with interactive data visualizations and collaborative features.",
-    tags: ["React", "D3.js", "WebSocket", "Tailwind"],
-    image: "",
-    liveUrl: "https://example.com",
-    repoUrl: "https://github.com",
-  },
-  {
-    title: "Voxel Forge",
+    title: "ArtForgeLab",
     description:
       "Browser-based voxel editor with WebGL rendering, undo/redo, and export-to-GLB capabilities.",
     tags: ["Three.js", "R3F", "TypeScript", "Zustand"],
-    image: "",
-    liveUrl: "https://example.com",
-    repoUrl: "https://github.com",
+    image: "artforgelab-banner.png",
+    liveUrl: "artforgelab.vercel.app",
+    repoUrl: "https://github.com/WindWalker01/ArtForgeLab",
   },
   {
-    title: "Synthwave CLI",
+    title: "BPSU Bulletin",
+    description:
+      "Real-time analytics dashboard for cloud infrastructure with interactive data visualizations and collaborative features.",
+    tags: ["React", "D3.js", "WebSocket", "Tailwind"],
+    image: "bpsu-bulletin-banner.png",
+    liveUrl: "",
+    repoUrl: "https://github.com/WindWalker01/BPSU-Bulletin",
+  },
+  {
+    title: "Plantanim",
     description:
       "Aesthetic terminal emulator with retro-wave theming, GPU-accelerated rendering, and plugin system.",
     tags: ["Rust", "WebGPU", "TUI", "WASM"],
-    image: "",
-    liveUrl: "https://example.com",
-    repoUrl: "https://github.com",
-  },
-  {
-    title: "Orbit Social",
-    description:
-      "Decentralized social platform with end-to-end encryption, built on ActivityPub and IPFS.",
-    tags: ["Next.js", "Solidity", "IPFS", "Prisma"],
-    image: "",
-    liveUrl: "https://example.com",
-    repoUrl: "https://github.com",
+    image: "plantanim-banner.png",
+    liveUrl: "",
+    repoUrl: "https://github.com/WindWalker01/Plantanim",
   },
 ];
 
@@ -210,7 +201,14 @@ export interface Experience {
   company: string;
   monogram: string;
   title: string;
-  employmentType: "Full-time" | "Contract" | "Internship" | "Part-time";
+  employmentType:
+    | "Full-time"
+    | "Contract"
+    | "Internship"
+    | "Part-time"
+    | "Scholarship"
+    | "Competition"
+    | "Volunteer";
   startDate: string;
   endDate: string | "Present";
   duration: string;
@@ -223,74 +221,76 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "Nebula Labs",
-    monogram: "NL",
-    title: "Senior Frontend Engineer",
-    employmentType: "Full-time",
-    startDate: "Jan 2023",
-    endDate: "Present",
-    duration: "1 yr 7 mos",
-    location: "San Francisco, CA",
+    company: "Freelance",
+    monogram: "FL",
+    title: "Freelance Software Developer",
+    employmentType: "Contract",
+    startDate: "2026",
+    endDate: "2026",
+    duration: "Project-based",
+    location: "Philippines",
     workMode: "Remote",
     highlights: [
-      "Architected a component library used across 4 product teams, reducing development time by 40%",
-      "Led migration from REST to GraphQL, cutting API payload size by 60%",
-      "Mentored 3 junior engineers through structured code reviews and pair programming sessions",
-      "Improved Lighthouse performance score from 68 to 94 with code-splitting and lazy-loading strategies",
+      "Designed and developed a custom mobile application tailored to the client's business requirements.",
+      "Collaborated directly with the client to gather requirements, iterate on feedback, and deliver requested features.",
+      "Implemented responsive user interfaces and application logic while maintaining code quality and performance.",
+      "Delivered the completed application within the agreed project scope and timeline.",
     ],
-    tags: ["React", "TypeScript", "GraphQL", "Tailwind", "Storybook"],
-    link: "https://example.com",
+    tags: ["Mobile Development", "React Native", "Expo", "TypeScript"],
   },
   {
-    company: "Quantum Byte",
-    monogram: "QB",
-    title: "Full-Stack Developer",
-    employmentType: "Contract",
-    startDate: "Jun 2022",
-    endDate: "Dec 2022",
-    duration: "7 mos",
-    location: "New York, NY",
+    company: "Yoonet Launchpad",
+    monogram: "YL",
+    title: "Launchpad Scholar",
+    employmentType: "Scholarship",
+    startDate: "2025",
+    endDate: "Present",
+    duration: "Current",
+    location: "Philippines",
     workMode: "Hybrid",
     highlights: [
-      "Built a real-time collaborative whiteboard app using WebSockets and Canvas API, serving 10K+ concurrent users",
-      "Designed and implemented a microservices architecture with Docker and Kubernetes, improving deployment frequency by 3x",
-      "Reduced API response times by 45% through database query optimization and Redis caching",
+      "Selected as a Yoonet Launchpad Scholar based on academic performance and technical potential.",
+      "Participated in technical workshops, career development programs, and collaborative learning activities.",
+      "Strengthened practical software engineering skills through mentorship and hands-on projects.",
     ],
-    tags: ["Next.js", "Node.js", "WebSocket", "Docker", "Redis", "PostgreSQL"],
-    link: "https://example.com",
+    tags: ["Software Engineering", "Professional Development", "Mentorship"],
   },
+
   {
-    company: "Stellar Apps",
-    monogram: "SA",
-    title: "Frontend Developer",
-    employmentType: "Full-time",
-    startDate: "Sep 2021",
-    endDate: "May 2022",
-    duration: "9 mos",
-    location: "Austin, TX",
+    company: "Home Credit × KadaKareer",
+    monogram: "HC",
+    title: "AI in UX Hackathon Finalist",
+    employmentType: "Competition",
+    startDate: "2025",
+    endDate: "2025",
+    duration: "Hackathon",
+    location: "Philippines",
+    workMode: "Hybrid",
+    highlights: [
+      "Advanced to the Top 10 finalist teams in the AI in UX Hackathon.",
+      "Collaborated with a multidisciplinary team to design and prototype an AI-powered user experience solution.",
+      "Presented the solution to industry professionals and received feedback from judges and mentors.",
+      "Applied rapid prototyping, user-centered design, and agile collaboration under strict time constraints.",
+    ],
+    tags: ["AI", "UX Design", "Rapid Prototyping", "Teamwork"],
+  },
+
+  {
+    company: "ArchWizards",
+    monogram: "AW",
+    title: "Programming Workshop Volunteer",
+    employmentType: "Volunteer",
+    startDate: "2024",
+    endDate: "2024",
+    duration: "Event",
+    location: "Bataan Peninsula State University",
     workMode: "On-site",
     highlights: [
-      "Developed 12+ responsive landing pages with 99+ Lighthouse accessibility scores",
-      "Introduced automated visual regression testing with Playwright, catching 30+ UI bugs pre-production",
-      "Reduced bundle size by 35% by migrating from Moment.js to date-fns and tree-shaking unused dependencies",
+      "Helped organize a programming workshop for first-year Computer Science students.",
+      "Guided participants through programming fundamentals and hands-on coding exercises.",
+      "Assisted in preparing learning materials and coordinating workshop activities.",
+      "Supported fellow volunteers to ensure a smooth and engaging learning experience.",
     ],
-    tags: ["React", "TypeScript", "SCSS", "Playwright", "Figma"],
-  },
-  {
-    company: "Pixel Forge",
-    monogram: "PF",
-    title: "Frontend Intern",
-    employmentType: "Internship",
-    startDate: "Jun 2021",
-    endDate: "Aug 2021",
-    duration: "3 mos",
-    location: "Los Angeles, CA",
-    workMode: "Remote",
-    highlights: [
-      "Contributed to an internal design system with 20+ reusable React components",
-      "Wrote unit tests achieving 85% code coverage for the dashboard module",
-      "Created interactive data visualizations with D3.js for a client-facing analytics portal",
-    ],
-    tags: ["React", "JavaScript", "D3.js", "Jest", "CSS Modules"],
+    tags: ["Mentoring", "Teaching", "Leadership", "Community"],
   },
 ];

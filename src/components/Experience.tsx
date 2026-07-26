@@ -40,7 +40,7 @@ function workModeColor(mode: string) {
 
 function ExperienceTag({ tag }: { tag: string }) {
   return (
-    <span className="border-gray-subtle bg-near-black text-gray-muted hover:border-electric-blue/30 hover:text-electric-blue rounded-full border px-2.5 py-0.5 font-mono text-[10px] transition-all">
+    <span className="border-gray-subtle bg-near-black text-gray-muted hover:border-electric-blue/30 hover:text-electric-blue rounded-full border px-3 py-1 font-mono text-sm transition-all">
       {tag}
     </span>
   );
@@ -87,13 +87,13 @@ function ExperienceNode({
           {/* Header row */}
           <div className="flex items-start gap-4">
             {/* Monogram */}
-            <div className="bg-electric-blue/10 text-electric-blue flex h-11 w-11 shrink-0 items-center justify-center rounded-lg font-mono text-sm font-bold">
+            <div className="bg-electric-blue/10 text-electric-blue flex h-11 w-11 shrink-0 items-center justify-center rounded-lg font-mono text-base font-bold">
               {exp.monogram}
             </div>
 
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-off-white group-hover:text-electric-blue truncate text-base font-semibold transition-colors">
+                <h3 className="text-off-white group-hover:text-electric-blue truncate text-lg font-semibold transition-colors">
                   {exp.title}
                 </h3>
                 {isPresent && (
@@ -103,12 +103,12 @@ function ExperienceNode({
                   </span>
                 )}
               </div>
-              <p className="text-gray-light mt-0.5 text-sm">{exp.company}</p>
+              <p className="text-gray-light mt-0.5 text-base">{exp.company}</p>
 
               {/* Meta row */}
-              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+              <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
                 <span
-                  className={`inline-block rounded-full border px-2 py-0.5 font-mono text-[10px] ${computeDurationClass(exp.employmentType)}`}
+                  className={`inline-block rounded-full border px-2 py-0.5 font-mono text-xs ${computeDurationClass(exp.employmentType)}`}
                 >
                   {exp.employmentType}
                 </span>
@@ -116,7 +116,7 @@ function ExperienceNode({
                   <Calendar size={12} />
                   {exp.startDate} — {exp.endDate}
                 </span>
-                <span className="text-gray-muted font-mono text-[10px]">
+                <span className="text-gray-muted font-mono text-xs">
                   · {exp.duration}
                 </span>
               </div>
@@ -124,7 +124,7 @@ function ExperienceNode({
           </div>
 
           {/* Location row */}
-          <div className="mt-3 flex items-center gap-3 text-xs">
+          <div className="mt-3 flex items-center gap-3 text-sm">
             <span className="text-gray-muted inline-flex items-center gap-1">
               <MapPin size={12} />
               {exp.location}
@@ -155,7 +155,7 @@ function ExperienceNode({
                     {exp.highlights.map((h, i) => (
                       <li
                         key={i}
-                        className="text-gray-light flex items-start gap-2 text-sm leading-relaxed"
+                        className="text-gray-light flex items-start gap-2 text-base leading-relaxed"
                       >
                         <span className="text-electric-blue mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
                         {h}
@@ -176,7 +176,7 @@ function ExperienceNode({
                       href={exp.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-electric-blue hover:text-electric-blue-dim mt-4 inline-flex items-center gap-1 text-xs font-medium transition-colors"
+                      className="text-electric-blue hover:text-electric-blue-dim mt-4 inline-flex items-center gap-1 text-sm font-medium transition-colors"
                       aria-label={`Visit ${exp.company} website`}
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -230,21 +230,21 @@ function ListView() {
           className="border-gray-subtle bg-dark-card hover:border-electric-blue/20 rounded-xl border p-4 transition-all"
         >
           <div className="flex items-start gap-3">
-            <div className="bg-electric-blue/10 text-electric-blue flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-mono text-xs font-bold">
+            <div className="bg-electric-blue/10 text-electric-blue flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-mono text-sm font-bold">
               {exp.monogram}
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-off-white text-sm font-semibold">
+                <h3 className="text-off-white text-base font-semibold">
                   {exp.title}
                 </h3>
-                <span className="text-gray-muted text-xs">{exp.company}</span>
+                <span className="text-gray-muted text-sm">{exp.company}</span>
                 <span className="text-gray-muted">·</span>
-                <span className="text-gray-muted font-mono text-[10px]">
+                <span className="text-gray-muted font-mono text-xs">
                   {exp.duration}
                 </span>
               </div>
-              <p className="text-gray-muted mt-0.5 text-xs">
+              <p className="text-gray-muted mt-0.5 text-sm">
                 {exp.startDate} — {exp.endDate} · {exp.location} ·{" "}
                 {exp.workMode}
               </p>
@@ -300,12 +300,12 @@ export default function Experience() {
               Relevant Experience
             </h2>
             {isPresent && (
-              <p className="text-gray-muted mt-1 flex items-center gap-1.5 text-xs">
+              <p className="text-gray-muted mt-1 flex items-center gap-1.5 text-base">
                 <span className="relative flex h-2 w-2">
                   <span className="bg-electric-blue absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" />
                   <span className="bg-electric-blue relative inline-flex h-2 w-2 rounded-full" />
                 </span>
-                Currently employed
+                Looking for work
               </p>
             )}
           </div>
@@ -314,7 +314,7 @@ export default function Experience() {
           <div className="border-gray-subtle bg-near-black flex rounded-lg border p-0.5">
             <button
               onClick={() => setViewMode("timeline")}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
                 viewMode === "timeline"
                   ? "bg-electric-blue/10 text-electric-blue shadow-sm"
                   : "text-gray-muted hover:text-off-white"
@@ -326,7 +326,7 @@ export default function Experience() {
             </button>
             <button
               onClick={() => setViewMode("list")}
-              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-all ${
+              className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
                 viewMode === "list"
                   ? "bg-electric-blue/10 text-electric-blue shadow-sm"
                   : "text-gray-muted hover:text-off-white"
