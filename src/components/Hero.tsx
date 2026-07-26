@@ -153,7 +153,9 @@ export default function Hero() {
                 className="text-gray-light hover:text-electric-blue"
               />
             </a>
+          </motion.div>
 
+          <motion.div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             {/* Resume */}
             <a
               href={personal.resumePath}
