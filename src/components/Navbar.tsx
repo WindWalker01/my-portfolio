@@ -52,7 +52,7 @@ export default function Navbar() {
           onClick={(e) => handleNavClick(e, "#hero")}
           className="text-electric-blue hover:text-electric-blue/80 font-mono text-lg font-semibold transition-colors"
         >
-          {personal.name.split(" ")[0]}.dev
+          ruzzel.dev
         </a>
 
         {/* Desktop links */}

@@ -115,7 +115,7 @@ export default function Footer() {
           >
             <div className="flex items-center gap-2.5">
               <span className="font-mono text-xl font-semibold text-white">
-                {personal.name.split(" ")[0]}.dev
+                ruzzel.dev
               </span>
               <span
                 className="inline-block h-2 w-2 rounded-full bg-emerald-400"
