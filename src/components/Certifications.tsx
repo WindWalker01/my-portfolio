@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
-import { Award, ExternalLink } from "lucide-react";
+import { Award, Loader2 } from "lucide-react";
 import { certifications } from "../data/portfolio";
+import {
+  DraggableCardBody,
+  DraggableCardContainer,
+} from "@/components/ui/draggable-card";
+import PdfModal from "@/components/PdfModal";
+import { useState, useRef } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+
+// Configure PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
 
 const container = {
   hidden: { opacity: 0 },
@@ -10,16 +20,63 @@ const container = {
   },
 };
 
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" as const },
-  },
-};
+function CertCardPreview({ pdfPath }: { pdfPath: string }) {
+  const [loadError, setLoadError] = useState(false);
+
+  if (loadError) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Award size={32} className="text-electric-blue/40" />
+      </div>
+    );
+  }
+
+  return (
+    <Document
+      file={pdfPath}
+      onLoadSuccess={() => {}}
+      onLoadError={() => setLoadError(true)}
+      loading={
+        <div className="flex h-full items-center justify-center">
+          <Loader2 size={20} className="text-electric-blue animate-spin" />
+        </div>
+      }
+      className="flex h-full w-full items-center justify-center"
+    >
+      <Page
+        pageNumber={1}
+        width={260}
+        renderTextLayer={false}
+        renderAnnotationLayer={false}
+        className="!h-full !w-auto"
+        loading={
+          <div className="flex h-full items-center justify-center">
+            <Loader2 size={20} className="text-electric-blue animate-spin" />
+          </div>
+        }
+      />
+    </Document>
+  );
+}
 
 export default function Certifications() {
+  const [selectedCert, setSelectedCert] = useState<{
+    pdfPath: string;
+    title: string;
+  } | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Generate offset positions for each card
+  const cardPositions = [
+    { top: "top-8", left: "left-[5%]", rotate: "-rotate-[6deg]" },
+    { top: "top-24", left: "left-[20%]", rotate: "-rotate-[3deg]" },
+    { top: "top-16", left: "left-[38%]", rotate: "rotate-[4deg]" },
+    { top: "top-32", left: "left-[52%]", rotate: "rotate-[7deg]" },
+    { top: "top-12", left: "left-[65%]", rotate: "-rotate-[2deg]" },
+    { top: "top-28", left: "left-[78%]", rotate: "rotate-[5deg]" },
+    { top: "top-40", left: "left-[10%]", rotate: "rotate-[10deg]" },
+  ];
+
   return (
     <section id="certifications" className="relative z-10 px-6 py-24 md:py-32">
       <div className="mx-auto max-w-5xl">
@@ -32,47 +89,76 @@ export default function Certifications() {
           Certifications
         </motion.h2>
 
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          className="text-gray-muted mt-3 max-w-2xl text-sm"
+        >
+          Drag and explore each certificate card. Click to view the full PDF.
+        </motion.p>
+
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
           variants={container}
-          className="mt-10 grid gap-4 md:grid-cols-3"
+          className="relative mt-16"
         >
-          {certifications.map((cert) => (
-            <motion.a
-              key={cert.title}
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              variants={item}
-              className="group border-gray-subtle bg-dark-card hover:border-electric-blue/30 rounded-xl border p-5 transition-all hover:shadow-[0_0_20px_-8px_#00d4ff]"
-              aria-label={`View ${cert.title} certification`}
-            >
-              <div className="flex items-start gap-4">
-                <div className="bg-electric-blue/10 group-hover:bg-electric-blue/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-all">
-                  <Award size={20} className="text-electric-blue" />
+          <DraggableCardContainer className="relative flex min-h-[600px] w-full items-center justify-center md:min-h-[700px]">
+            <div
+              ref={containerRef}
+              className="absolute inset-0"
+              aria-hidden="true"
+            />
+            {certifications.map((cert, index) => (
+              <DraggableCardBody
+                key={cert.title}
+                containerRef={containerRef}
+                className={`bg-dark-card border-gray-subtle ${cardPositions[index].top} ${cardPositions[index].left} ${cardPositions[index].rotate} absolute flex min-h-52 w-64 cursor-grab flex-col overflow-hidden rounded-xl border shadow-xl active:cursor-grabbing sm:w-72`}
+                onClick={() =>
+                  setSelectedCert({
+                    pdfPath: cert.pdfPath,
+                    title: cert.title,
+                  })
+                }
+              >
+                {/* PDF Preview */}
+                <div className="absolute inset-0 overflow-hidden">
+                  <CertCardPreview pdfPath={cert.pdfPath} />
                 </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-off-white group-hover:text-electric-blue text-sm font-semibold transition-colors">
-                    {cert.title}
-                  </h3>
-                  <p className="text-gray-muted mt-1 text-xs">{cert.issuer}</p>
-                  <div className="mt-2 flex items-center justify-between">
-                    <span className="text-gray-muted font-mono text-[10px]">
-                      {cert.date}
-                    </span>
-                    <ExternalLink
-                      size={12}
-                      className="text-gray-muted group-hover:text-electric-blue transition-colors"
-                    />
+
+                {/* Overlay with info */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 pt-12">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-electric-blue/20 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg backdrop-blur-sm">
+                      <Award size={16} className="text-electric-blue" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-off-white text-sm leading-snug font-semibold drop-shadow-lg">
+                        {cert.title}
+                      </h3>
+                      <p className="mt-0.5 text-xs text-gray-300 drop-shadow-lg">
+                        {cert.issuer}
+                      </p>
+                      <span className="mt-1 block font-mono text-[10px] text-gray-400 drop-shadow-lg">
+                        {cert.date}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.a>
-          ))}
+              </DraggableCardBody>
+            ))}
+          </DraggableCardContainer>
         </motion.div>
       </div>
+
+      <PdfModal
+        isOpen={selectedCert !== null}
+        onClose={() => setSelectedCert(null)}
+        pdfPath={selectedCert?.pdfPath ?? ""}
+        title={selectedCert?.title ?? ""}
+      />
     </section>
   );
 }

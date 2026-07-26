@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   AnimatePresence,
-  useInView,
 } from "framer-motion";
 import {
   MapPin,
@@ -50,15 +49,12 @@ function ExperienceTag({ tag }: { tag: string }) {
 function ExperienceNode({
   exp,
   index,
-  isLast,
 }: {
   exp: (typeof experiences)[number];
   index: number;
-  isLast: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-60px" });
   const isPresent = exp.endDate === "Present";
 
   return (
@@ -412,11 +408,7 @@ export default function Experience() {
                       </div>
 
                       {/* Card wrapper */}
-                      <ExperienceNode
-                        exp={exp}
-                        index={i}
-                        isLast={i === experiences.length - 1}
-                      />
+                      <ExperienceNode exp={exp} index={i} />
                     </motion.div>
                   ))}
                 </ol>

@@ -141,29 +141,66 @@ export interface Certification {
   date: string;
   link: string;
   badge: string;
+  pdfPath: string;
 }
 
 export const certifications: Certification[] = [
   {
-    title: "AWS Solutions Architect – Associate",
-    issuer: "Amazon Web Services",
+    title: "Web Development v3",
+    issuer: "Bataan Peninsula State University",
     date: "2025",
-    link: "https://aws.amazon.com/certification/",
-    badge: "AWS",
+    link: "/certificates/web-development-v3.pdf",
+    badge: "WebDev",
+    pdfPath: "/certificates/web-development-v3.pdf",
   },
   {
-    title: "Meta Front-End Developer",
-    issuer: "Meta (Coursera)",
-    date: "2024",
-    link: "https://www.coursera.org/meta",
-    badge: "Meta",
+    title: "Cyber Threat Management",
+    issuer: "Bataan Peninsula State University",
+    date: "2025",
+    link: "/certificates/Cyber_Threat_Management_certificate_rupmendoza23-bpsu-edu-ph_8c33ec62-036d-4a7f-9823-a4b52f5a45d4.pdf",
+    badge: "CyberSec",
+    pdfPath:
+      "/certificates/Cyber_Threat_Management_certificate_rupmendoza23-bpsu-edu-ph_8c33ec62-036d-4a7f-9823-a4b52f5a45d4.pdf",
   },
   {
-    title: "Google UX Design",
-    issuer: "Google (Coursera)",
-    date: "2023",
-    link: "https://www.coursera.org/google",
-    badge: "Google",
+    title: "Certification 1",
+    issuer: "Professional Certification",
+    date: "2025",
+    link: "/certificates/Cert182215649596.pdf",
+    badge: "Cert1",
+    pdfPath: "/certificates/Cert182215649596.pdf",
+  },
+  {
+    title: "Certification 2",
+    issuer: "Professional Certification",
+    date: "2025",
+    link: "/certificates/Cert247215647131.pdf",
+    badge: "Cert2",
+    pdfPath: "/certificates/Cert247215647131.pdf",
+  },
+  {
+    title: "Certification 3",
+    issuer: "Professional Certification",
+    date: "2025",
+    link: "/certificates/Cert582215648928.pdf",
+    badge: "Cert3",
+    pdfPath: "/certificates/Cert582215648928.pdf",
+  },
+  {
+    title: "Certification 4",
+    issuer: "Professional Certification",
+    date: "2025",
+    link: "/certificates/Cert628215650306.pdf",
+    badge: "Cert4",
+    pdfPath: "/certificates/Cert628215650306.pdf",
+  },
+  {
+    title: "Certification 5",
+    issuer: "Professional Certification",
+    date: "2025",
+    link: "/certificates/Cert951215648322.pdf",
+    badge: "Cert5",
+    pdfPath: "/certificates/Cert951215648322.pdf",
   },
 ];
 

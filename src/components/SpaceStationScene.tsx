@@ -5,7 +5,6 @@ import {
   AsciiRenderer,
   Float,
   OrbitControls,
-  Environment,
 } from "@react-three/drei";
 import * as THREE from "three";
 
