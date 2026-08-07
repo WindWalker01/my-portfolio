@@ -48,7 +48,7 @@ export default function About() {
                   <div className="bg-electric-blue/10 text-electric-blue mx-auto flex h-24 w-24 items-center justify-center rounded-full text-4xl font-bold">
                     {personal.name.charAt(0)}
                   </div>
-                  <img src="profile.jpg" alt="Profile" />
+                  <img src="profile.png" alt="Profile" />
                   <p className="text-gray-muted mt-3 text-base">
                     Your photo here
                   </p>
